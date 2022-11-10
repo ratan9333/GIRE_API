@@ -1,0 +1,5 @@
+host = 'akara-new.cfjuxuxznesy.ap-south-1.rds.amazonaws.com'
+user = 'u_gire'
+passwd = 'ugire!3101'
+db_name = 'gire'
+port = '3306'

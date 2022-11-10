@@ -1,7 +1,0 @@
-Flask==2.1.2
-Flask_JWT_Extended==4.4.4
-pandas==1.4.3
-PyJWT==2.5.0
-python_bcrypt==0.3.2
-SQLAlchemy==1.4.40
-waitress==2.1.2

@@ -26,13 +26,26 @@ def socialUser(bodyData):
             connection.execute(query)
             connection.close()
 
-            query = "SELECT id_app_user FROM app_user WHERE email='"+email+"'"
+            query = "SELECT id_app_user,email,photo_url,phone_number FROM app_user WHERE email='"+email+"'"
             data = getServerData(query)
 
             user_id = str(data['id_app_user'][0])
+            email = str(data['email'][0])
+            phone_number = str(data['phone_number'][0])
+            photo_url = str(data['photo_url'][0])
 
             token = create_access_token(identity={"email": email, "user_id": user_id})
 
-            return getSignedJwt(token, str(bodyData['name']), str(user_id)), 200
+            return getSignedJwt(token, str(bodyData['name']), int(user_id),email,photo_url,phone_number), 200
         else:
-            return errorHandler("Email already Exists")
+            query = "SELECT id_app_user,email,photo_url,phone_number FROM app_user WHERE email='"+str(bodyData['email'])+"'"
+            data = getServerData(query)
+
+            user_id = str(data['id_app_user'][0])
+            email = str(data['email'][0])
+            phone_number = str(data['phone_number'][0])
+            photo_url = str(data['photo_url'][0])
+
+            token = create_access_token(identity={"email": email, "user_id": user_id})
+
+            return getSignedJwt(token, str(bodyData['name']), int(user_id),email,photo_url,phone_number), 200

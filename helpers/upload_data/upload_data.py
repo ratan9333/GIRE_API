@@ -19,6 +19,8 @@ def sqlUploadDataQuery(table_name,data):
                     newList.append(eachValue)
             print('new list: ',newList)
             data[eachKey] = str(newList).replace("'",'')
+        elif isinstance(value,int):
+            data[eachKey] = value
         elif value in [True,False]:
             value = 'Y' if value == True else 'N'
             data[eachKey] = value
@@ -29,6 +31,7 @@ def sqlUploadDataQuery(table_name,data):
     query += '`) VALUES('+"'"
     query += "','".join([str(x) for x in list(data.values())])
     query += "');"
+    print(query)
     return query
 
 def sqlUpload(data,user_id,user_type):
@@ -38,9 +41,9 @@ def sqlUpload(data,user_id,user_type):
         sfeedback_tname = 's_feedback'
         sdocuments_tname = 's_documents'
     else:
-        sgeneral_tname = 'dep_s_general'
-        sfeedback_tname = 'dep_s_feedback'
-        sdocuments_tname = 'dep_s_documents'
+        sgeneral_tname = 's_general'
+        sfeedback_tname = 's_feedback'
+        sdocuments_tname = 's_documents'
 
 
     # Upload S general
